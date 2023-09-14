@@ -52,14 +52,14 @@ module "vpc" {
   azs  = data.aws_availability_zones.available_azs.names
 
   private_subnets = [
-    # this loop will create a one-line list as ["10.0.0.0/20", "10.0.16.0/20", "10.0.32.0/20", ...]
+    # this loop will create a one-line list as ["20.0.0.0/20", "20.0.16.0/20", "20.0.32.0/20", ...]
     # with a length depending on how many Zones are available
     for zone_id in data.aws_availability_zones.available_azs.zone_ids :
     cidrsubnet(var.main_network_block, var.subnet_prefix_extension, index(data.aws_availability_zones.available_azs.zone_ids, zone_id))
   ]
 
   public_subnets = [
-    # this loop will create a one-line list as ["10.0.128.0/20", "10.0.144.0/20", "10.0.160.0/20", ...]
+    # this loop will create a one-line list as ["20.0.128.0/20", "20.0.144.0/20", "20.0.160.0/20", ...]
     # with a length depending on how many Zones are available
     # there is a zone Offset variable, to make sure no collisions are present with private subnet blocks
     for zone_id in data.aws_availability_zones.available_azs.zone_ids :
