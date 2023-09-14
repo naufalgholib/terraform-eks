@@ -1,4 +1,4 @@
-autoscaling_average_cpu = 30
+autoscaling_average_cpu = 60
 eks_managed_node_groups = {
   "my-app-eks-group1" = {
     ami_type     = "AL2_x86_64"
